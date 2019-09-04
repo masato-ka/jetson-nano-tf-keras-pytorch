@@ -1,4 +1,4 @@
-FROM arm64v8/ubuntu
+FROM nvcr.io/nvidia/l4t-base:r32.2
 
 # setup environment
 ENV DEBIAN_FRONTEND noninteractive
@@ -37,6 +37,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         zlib1g-dev \
         zip \
         libjpeg8-dev \
+        python3-h5py \
+        make \
+        g++ \
     && rm -rf /var/lib/apt/lists/*
 
 ENV PYTHONUNBUFFERED 1
