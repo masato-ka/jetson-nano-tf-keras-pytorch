@@ -66,22 +66,7 @@ RUN pip3 install \
 
 # install other useful python libraries
 RUN pip3 install \
-    docopt \
-    tornado \
-    moviepy \
-    greenlet \
-    proglog \
     imageio-ffmpeg \
-    MarkupSafe \
-    python-engineio \
-    python-socketio \
-    click \
-    itsdangerous \
-    Jinja2 \
-    flask \
-    dnspython \
-    monotonic \
-    eventlet
 
 # opencv
 RUN apt-get update && apt-get install -y --no-install-recommends \
