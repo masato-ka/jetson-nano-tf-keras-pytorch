@@ -3,10 +3,10 @@ FROM nvcr.io/nvidia/l4t-base:r32.2
 # setup environment
 ENV DEBIAN_FRONTEND noninteractive
 ENV QEMU_EXECVE 1
-COPY ./bin/ /usr/bin/
-RUN [ "cross-build-start" ]
+#COPY ./bin/ /usr/bin/
+#RUN [ "cross-build-start" ]
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt update && apt install -y --no-install-recommends \
         software-properties-common \
         apt-utils \
         apt-transport-https \
@@ -30,7 +30,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # tensor flow dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt update && apt install -y --no-install-recommends \
         libhdf5-serial-dev \
         hdf5-tools \
         libhdf5-dev \
@@ -69,7 +69,7 @@ RUN pip3 install \
     imageio-ffmpeg \
 
 # opencv
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt update && apt install -y --no-install-recommends \
         libopenblas-dev \
         build-essential cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev \
         libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev \
@@ -149,7 +149,7 @@ COPY tf-cuda-test.py /opt/tools/
 COPY tegra-cam.py /opt/tools/
 
 COPY entrypoint.sh /
-RUN [ "cross-build-end" ]
+#RUN [ "cross-build-end" ]
 
 # setup docker user
 ARG user=jetson
