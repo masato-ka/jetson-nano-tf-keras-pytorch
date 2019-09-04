@@ -66,7 +66,7 @@ RUN pip3 install \
 
 # install other useful python libraries
 RUN pip3 install \
-    imageio-ffmpeg \
+    imageio-ffmpeg
 
 # opencv
 RUN apt update && apt install -y --no-install-recommends \
