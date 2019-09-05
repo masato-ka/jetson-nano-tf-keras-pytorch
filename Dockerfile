@@ -156,8 +156,9 @@ RUN apt update && apt install -y --no-install-recommends \
 #ref: https://devtalk.nvidia.com/default/topic/1049972/jetson-nano/opencv-cuda-python-with-jetson-nano/1
 #ref: https://github.com/AastaNV/JEP/blob/master/script/install_opencv4.0.0_Nano.sh
 #ref: https://github.com/jkjung-avt/jetson_nano/blob/master/install_opencv-3.4.6.sh
+ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH/usr/local/cuda-10.0/targets/aarch64-linux/lib/stub
 ARG OPENCV=3.4.6
-ARG OPENCV=4.1.0
+#ARG OPENCV=4.1.0
 #not using these options: -D WITH_QT=ON -D WITH_OPENGL=ON
 RUN wget https://github.com/opencv/opencv/archive/${OPENCV}.tar.gz -O /tmp/opencv-${OPENCV}.tar.gz > /dev/null 2>&1 \
     && wget https://github.com/opencv/opencv_contrib/archive/${OPENCV}.tar.gz -O /tmp/opencv_contrib-${OPENCV}.tar.gz > /dev/null 2>&1 \
