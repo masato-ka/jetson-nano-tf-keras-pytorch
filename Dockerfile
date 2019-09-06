@@ -185,25 +185,25 @@ COPY entrypoint.sh /
 #RUN [ "cross-build-end" ]
 
 # setup docker user
-ARG user=jetson
-ARG group=jetson
-ARG uid=1000
-ARG gid=1000
-ARG home=/home/jetson
-RUN groupadd -g ${gid} ${group} \
-    && useradd -d ${home} -u ${uid} -g ${gid} -m -s /bin/bash ${user} \
-    && echo "${user} ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/sudoers_${user} \
-    && addgroup --gid 108 i2c \
-    && usermod -a -G i2c ${user} \
-    && addgroup --gid 104 input \
-    && usermod -a -G input ${user} \
-    && usermod -a -G video ${user}
+# ARG user=jetson
+# ARG group=jetson
+# ARG uid=1000
+# ARG gid=1000
+# ARG home=/home/jetson
+# RUN groupadd -g ${gid} ${group} \
+#     && useradd -d ${home} -u ${uid} -g ${gid} -m -s /bin/bash ${user} \
+#     && echo "${user} ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/sudoers_${user} \
+#     && addgroup --gid 108 i2c \
+#     && usermod -a -G i2c ${user} \
+#     && addgroup --gid 104 input \
+#     && usermod -a -G input ${user} \
+#     && usermod -a -G video ${user}
     # && usermod -aG docker ${user}
 
-RUN cd /usr/local && ln -s cuda-10.0 cuda
+# RUN cd /usr/local && ln -s cuda-10.0 cuda
 
-USER ${user}
-WORKDIR ${home}
+# USER ${user}
+# WORKDIR ${home}
 
 ENTRYPOINT [ "/entrypoint.sh" ]
 CMD [ "/bin/bash" ]
