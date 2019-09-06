@@ -168,10 +168,14 @@ RUN wget https://github.com/opencv/opencv/archive/${OPENCV}.tar.gz -O /tmp/openc
     && cd opencv-${OPENCV}/ \
     && mkdir build \
     && cd build/ \
+    && LD_LIBRARY_PATH=usr/local/cuda-10.0/targets/aarch64-linux/lib/stub \
+    && ldconfig \
     && cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D WITH_CUDA=OFF -D CUDA_ARCH_BIN="5.3" -D CUDA_ARCH_PTX="" -D CUDA_nppi_LIBRARY=true -D WITH_CUBLAS=ON -D ENABLE_FAST_MATH=ON -D CUDA_FAST_MATH=ON -D OPENCV_EXTRA_MODULES_PATH=/tmp/opencv_contrib-${OPENCV}/modules -D WITH_GSTREAMER=ON -D ENABLE_NEON=ON -D OPENCV_ENABLE_NONFREE=ON -D WITH_LIBV4L=ON -D BUILD_opencv_python2=OFF -D BUILD_opencv_python3=ON -D BUILD_TESTS=OFF -D BUILD_PERF_TESTS=OFF -D BUILD_EXAMPLES=OFF .. \
     && make -j$(nproc) \
     && make install \
     && rm -rf /tmp/opencv*
+
+    ## 多分cuda配下をビルド時にマウントせねばならぬ。。。
 
 COPY cam-test.sh /opt/tools/
 COPY tf-cuda-test.py /opt/tools/
